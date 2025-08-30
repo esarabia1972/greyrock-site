@@ -1,0 +1,572 @@
+'use client'
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
+import { 
+  Lightbulb, 
+  Users, 
+  Target, 
+  Rocket, 
+  MapPin, 
+  Mail, 
+  Phone,
+  ArrowRight,
+  CheckCircle,
+  Building,
+  Globe,
+  Clock,
+  ExternalLink,
+  Linkedin
+} from "lucide-react";
+
+export default function Index() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSendEmail = () => {
+    const { name, email, subject, message } = formData;
+    const emailBody = `Hola,
+
+${message}`;
+    
+    const mailtoLink = `mailto:contacto@greyrock.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoLink;
+    
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-slate-200 z-50">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/img/greyrock-logo.png" 
+              alt="GreyRock Venture Studio" 
+              className="h-10 w-auto cursor-pointer"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            />
+          </div>
+          <div className="hidden md:flex items-center space-x-6">
+            <a href="#que-es" className="text-slate-600 hover:text-slate-900 transition-colors" onClick={(e) => { e.preventDefault(); const element = document.getElementById('que-es'); if (element) { const offset = element.offsetTop - 80; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>¿Qué es GreyRock?</a>
+            <a href="#como-trabajamos" className="text-slate-600 hover:text-slate-900 transition-colors" onClick={(e) => { e.preventDefault(); const element = document.getElementById('como-trabajamos'); if (element) { const offset = element.offsetTop - 80; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>Cómo trabajamos</a>
+            <a href="#convocatorias" className="text-slate-600 hover:text-slate-900 transition-colors" onClick={(e) => { e.preventDefault(); const element = document.getElementById('convocatorias'); if (element) { const offset = element.offsetTop - 80; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>Convocatorias</a>
+            <Button variant="default" className="bg-slate-800 hover:bg-slate-700" onClick={() => { const element = document.getElementById('convocatorias'); if (element) { const offset = element.offsetTop - 100; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>
+              Postulá tu idea
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 px-4">
+        <div className="container mx-auto text-center max-w-4xl">
+          <div className="mb-8">
+            <img 
+              src="/img/greyrock-hero-logo.png" 
+              alt="GreyRock Venture Studio" 
+              className="mx-auto mb-6 h-48 md:h-56 lg:h-64 w-auto max-w-full object-contain"
+            />
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-slate-600 to-green-700 bg-clip-text text-transparent leading-tight">
+            Tu startup necesita más realidad y menos slides. Escalá más rápido.
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Co-creamos startups tecnológicas desde <span className="font-bold">Tandil</span>, validando rápido, facturando temprano y con foco en eficiencia operativa. Nos integramos como co-founders desde el día uno.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-slate-800 hover:bg-slate-700 text-lg px-8 py-3" onClick={() => { const element = document.getElementById('convocatorias'); if (element) { const offset = element.offsetTop - 100; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>
+              Postulá tu idea
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-slate-300" onClick={() => window.open('https://cupcakeipsum.com', '_blank')}>
+              Sumate al ecosistema
+              <ExternalLink className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* What is GreyRock - MEJORADA */}
+      <section id="que-es" className="py-16 px-4 bg-slate-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">¿Qué es GreyRock?</h2>
+            <div className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto">
+              <p className="font-semibold mb-6 text-2xl text-slate-800">
+                GreyRock es un Venture Studio territorial que impulsa startups tecnológicas desde contextos reales, no desde una presentación.
+              </p>
+              <div className="grid md:grid-cols-2 gap-8 text-left">
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <h3 className="font-bold text-lg text-slate-800 mb-3">🚀 No aceleramos promesas</h3>
+                  <p className="text-slate-600">
+                    Co-creamos negocios funcionales: nos involucramos en la operación, acompañamos con criterio financiero y empujamos MVPs que validen rápido y facturen desde el inicio.
+                  </p>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-sm">
+                  <h3 className="font-bold text-lg text-slate-800 mb-3">🤝 Somos parte del equipo</h3>
+                  <p className="text-slate-600">
+                    No somos observadores: somos parte del equipo fundador. Participamos activamente en las decisiones clave y la gobernanza del negocio.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How we work */}
+      <section id="como-trabajamos" className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Cómo lo hacemos</h2>
+            <p className="text-xl text-slate-600">
+              Nuestros cuatro principios operativos
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="text-left p-8 bg-slate-50 rounded-lg">
+              <Target className="h-12 w-12 text-blue-600 mb-4" />
+              <h3 className="font-semibold text-xl text-slate-800 mb-4">Validamos en condiciones reales</h3>
+              <p className="text-slate-600">
+                Usamos entornos de prueba concretos y controlados para acelerar la tracción.
+              </p>
+            </div>
+            
+            <div className="text-left p-8 bg-slate-50 rounded-lg">
+              <Users className="h-12 w-12 text-green-600 mb-4" />
+              <h3 className="font-semibold text-xl text-slate-800 mb-4">Co-creamos con operadores</h3>
+              <p className="text-slate-600">
+                Buscamos equipos fundadores comprometidos con la ejecución, no con el pitch.
+              </p>
+            </div>
+            
+            <div className="text-left p-8 bg-slate-50 rounded-lg">
+              <Lightbulb className="h-12 w-12 text-purple-600 mb-4" />
+              <h3 className="font-semibold text-xl text-slate-800 mb-4">Inversión mínima, resultados reales</h3>
+              <p className="text-slate-600">
+                Aplicamos criterio P&L desde el día uno.
+              </p>
+            </div>
+            
+            <div className="text-left p-8 bg-slate-50 rounded-lg">
+              <Rocket className="h-12 w-12 text-indigo-600 mb-4" />
+              <h3 className="font-semibold text-xl text-slate-800 mb-4">Nos integramos al equipo</h3>
+              <p className="text-slate-600">
+                Participamos en la gobernanza y en las decisiones clave.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ¿Quiénes pueden sumarse a GreyRock? */}
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">¿Quiénes pueden sumarse a GreyRock?</h2>
+            <p className="text-xl text-slate-600">
+              Buscamos personas que quieran validar, facturar y construir desde Tandil negocios que funcionen en el mundo real.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-orange-600" />
+              </div>
+              <h3 className="font-semibold text-xl text-slate-800 mb-3">Emprendedores con perfil operador</h3>
+              <p className="text-slate-600">Personas dispuestas a ejecutar, adaptarse y comprometerse con el día a día de una startup real.</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Building className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-xl text-slate-800 mb-3">Equipos que quieran construir desde Tandil</h3>
+              <p className="text-slate-600">Proyectos que aprovechen el entorno controlado y conectado de Tandil para validar en condiciones reales.</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Rocket className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-xl text-slate-800 mb-3">Soluciones listas para validar</h3>
+              <p className="text-slate-600">Ideas que puedan convertirse en MVPs funcionales en pocos meses, resolviendo problemas concretos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Por qué Tandil */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-slate-800 mb-6">Por qué Tandil</h2>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">Hub de Talento y Tecnología</h3>
+                    <p className="text-slate-600">Una ciudad con fuerte ecosistema productivo y tecnológico, ideal para el desarrollo de startups</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">Escala Humana</h3>
+                    <p className="text-slate-600">Un entorno que permite colaboración cercana y fuerte red institucional</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">Validación Rápida</h3>
+                    <p className="text-slate-600">Permite testear ideas de forma ágil y concreta con usuarios reales</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-slate-100 to-green-50 rounded-lg p-8">
+              <div className="flex items-center mb-6">
+                <MapPin className="h-8 w-8 text-green-600 mr-3" />
+                <h3 className="text-2xl font-bold text-slate-800">Tandil, Argentina</h3>
+              </div>
+              <p className="text-slate-600 mb-6">
+                Una ciudad estratégica en el corazón de la provincia de Buenos Aires, 
+                con conexión directa a los principales mercados pero con todas las ventajas 
+                de desarrollar en un entorno más colaborativo y eficiente.
+              </p>
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div className="bg-white rounded-lg p-4">
+                  <div className="text-2xl font-bold text-slate-800">350km</div>
+                  <div className="text-sm text-slate-600">de Buenos Aires</div>
+                </div>
+                <div className="bg-white rounded-lg p-4">
+                  <div className="text-2xl font-bold text-slate-800">140k</div>
+                  <div className="text-sm text-slate-600">habitantes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quiénes trabajan con nosotros */}
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Quiénes trabajan con nosotros</h2>
+            <p className="text-xl text-slate-600">
+              Instituciones y organizaciones que forman parte de nuestro ecosistema
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: "Clúster Tecnológico Tandil", description: "Ecosistema local de innovación", url: "https://www.clustertecnologicotandil.org.ar/", logo: "/img/ClusterTecnologicoTandil.png" },
+              { name: "Municipio de Tandil", description: "Respaldo institucional regional", url: "https://www.tandil.gov.ar/", logo: "/img/MunicipiodeTandil.png" },
+              { name: "Universidad Nacional del Centro", description: "Formación y talento público", url: "https://www.unicen.edu.ar/", logo: "/img/UNICEN.png" },
+              { name: "CONICET", description: "Ciencia aplicada al territorio", url: "https://www.conicet.gov.ar/", logo: "/img/CONICET.png" },
+              { name: "ITBA", description: "Tecnología e ingeniería líder", url: "https://www.itba.edu.ar/", logo: "/img/ITBA.png" },
+              { name: "Grupo Faro Verde", description: "Desarrollo local sostenible", url: "https://grupofaroverde.com/", logo: "/img/faroverde.png" },
+              { name: "Cagnoli", description: "Tradición gourmet tandilense", url: "http://www.cagnoli.com/", logo: "/img/cagnoli.png" },
+              { name: "Genneia", description: "Energía renovable argentina", url: "https://www.genneia.com.ar/", logo: "/img/genneia.png" },
+              { name: "Ceres Tolvas", description: "Logística agroindustrial regional", url: "https://www.cerestolvas.com.ar/index.php", logo: "/img/cerestolvas.png" }
+            ].map((partner, index) => (
+              <div 
+                key={index} 
+                className="text-center bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                onClick={() => window.open(partner.url, '_blank')}
+              >
+                <div className="w-40 h-20 bg-white mx-auto mb-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+                <p className="text-slate-600 text-sm italic">{partner.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Próximas Convocatorias */}
+      <section id="convocatorias" className="py-16 px-4 bg-slate-800 text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl font-bold mb-6">Próximas Convocatorias</h2>
+          <p className="text-xl text-slate-300 mb-8">
+            ¿Tenés una idea que puede cambiar el mundo? Queremos conocerte.
+          </p>
+          
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">
+            <div className="bg-red-900 text-red-100 px-6 py-3 rounded-lg flex items-center gap-2">
+              <Clock className="h-5 w-5" />
+              <span className="font-semibold">Inscripción cierra: 30 de Septiembre 2025</span>
+            </div>
+            <div className="bg-orange-900 text-orange-100 px-6 py-3 rounded-lg">
+              <span className="font-semibold">Solo quedan 8 lugares disponibles</span>
+            </div>
+          </div>
+          
+          <Card className="bg-white text-slate-800 max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle className="text-2xl">Convocatoria 2026</CardTitle>
+              <CardDescription className="text-lg">
+                Estamos buscando a los próximos emprendedores que quieran construir negocios reales desde Tandil.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4 text-left">
+                <div>
+                  <h4 className="font-semibold mb-2">¿Qué buscamos?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• Equipos comprometidos con perfil operador</li>
+                    <li>• Ideas con potencial de validación en el corto plazo</li>
+                    <li>• Enfoque en resolver problemas concretos desde el territorio</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">¿Qué ofrecemos?</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• Capital semilla eficiente</li>
+                    <li>• Acompañamiento operativo y gobernanza activa</li>
+                    <li>• Ecosistema local conectado para testear y validar en condiciones reales</li>
+                  </ul>
+                </div>
+              </div>
+              <Separator />
+              <Button size="lg" className="w-full bg-slate-800 hover:bg-slate-700" onClick={() => window.open('https://cupcakeipsum.com', '_blank')}>
+                Aplicar Ahora
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Conectemos */}
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Conectemos</h2>
+            <p className="text-xl text-slate-600">
+              ¿Tenés preguntas? ¿Querés ser parte del ecosistema? Hablemos.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div>
+              <Card className="border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-slate-800">Envianos un mensaje</CardTitle>
+                  <CardDescription>
+                    Completá el formulario y nos pondremos en contacto a la brevedad
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">Nombre</label>
+                      <Input 
+                        name="name"
+                        placeholder="Tu nombre" 
+                        value={formData.name}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">Email</label>
+                      <Input 
+                        name="email"
+                        type="email" 
+                        placeholder="tu@email.com" 
+                        value={formData.email}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-700 mb-2 block">Asunto</label>
+                    <Input 
+                      name="subject"
+                      placeholder="¿En qué podemos ayudarte?" 
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-700 mb-2 block">Mensaje</label>
+                    <Textarea 
+                      name="message"
+                      placeholder="Contanos sobre tu idea o consulta..." 
+                      className="min-h-[120px]"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <Button 
+                    className="w-full bg-slate-800 hover:bg-slate-700"
+                    onClick={handleSendEmail}
+                  >
+                    Enviar Mensaje
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-slate-800 mb-6">Información de Contacto</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Mail className="h-5 w-5 text-slate-600" />
+                    <a href="mailto:contacto@greyrock.studio" className="text-slate-700 hover:text-slate-800 transition-colors">contacto@greyrock.studio</a>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="h-5 w-5 text-slate-600" />
+                    <div className="text-slate-700">
+                      <a href="https://maps.app.goo.gl/GkA6vfmG2DeB5ZT5A" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-slate-800 transition-colors">
+                        Distrito Avellaneda
+                      </a>
+                      <div className="text-sm">Av. Avellaneda 1140, B7000 Tandil, Provincia de Buenos Aires</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nuestro Equipo */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Nuestro Equipo</h2>
+            <p className="text-xl text-slate-600">
+              Las personas detrás de GreyRock Venture Studio
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { name: "Cintia Scoles", linkedin: "https://www.linkedin.com/in/cintia-scoles-02659224/", image: "/img/1_cintia.jpeg" },
+              { name: "Maximiliano Cortes", linkedin: "https://www.linkedin.com/in/maximiliano-cortes-82aa193/", image: "/img/3_maxi.jpeg" },
+              { name: "Esteban Sarabia", linkedin: "https://www.linkedin.com/in/estebansarabia/", image: "/img/2_esteban.jpeg" },
+              { name: "Mauricio Salvatierra", linkedin: "https://www.linkedin.com/in/mauricio-salvatierra-10567318/", image: "/img/4_mauricio.jpeg" }
+            ].map((member, index) => (
+              <div key={index} className="text-center">
+                <div className="w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="font-semibold text-lg text-slate-800 mb-2">{member.name}</h3>
+                <Button variant="outline" size="sm" onClick={() => window.open(member.linkedin, '_blank')}>
+                  <Linkedin className="h-4 w-4 mr-1" />
+                  LinkedIn
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black text-white py-12 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="md:col-span-1">
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src="/img/greyrock-footer-logo.png" 
+                  alt="GreyRock Venture Studio" 
+                  className="h-12 w-auto"
+                />
+              </div>
+              <p className="text-slate-300 mb-6">
+                Construimos startups desde Tandil para el mundo. Acompañamos emprendedores desde la idea hasta el MVP validado.
+              </p>
+              <p className="text-slate-400 text-sm">
+                © 2025 GreyRock Venture Studio. Todos los derechos reservados.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-white">Empresa</h4>
+              <ul className="space-y-2 text-slate-300">
+                <li>
+                  <a href="#que-es" className="hover:text-white transition-colors" onClick={(e) => { e.preventDefault(); const element = document.getElementById('que-es'); if (element) { const offset = element.offsetTop - 80; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>
+                    ¿Qué es GreyRock?
+                  </a>
+                </li>
+                <li>
+                  <a href="#como-trabajamos" className="hover:text-white transition-colors" onClick={(e) => { e.preventDefault(); const element = document.getElementById('como-trabajamos'); if (element) { const offset = element.offsetTop - 80; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>
+                    Cómo trabajamos
+                  </a>
+                </li>
+                <li>
+                  <a href="#convocatorias" className="hover:text-white transition-colors" onClick={(e) => { e.preventDefault(); const element = document.getElementById('convocatorias'); if (element) { const offset = element.offsetTop - 80; window.scrollTo({ top: offset, behavior: 'smooth' }); } }}>
+                    Convocatorias
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-white">Contacto</h4>
+              <div className="space-y-2 text-slate-300">
+                <p>
+                  <a href="mailto:contacto@greyrock.studio" className="hover:text-white transition-colors">
+                    contacto@greyrock.studio
+                  </a>
+                </p>
+                <p>
+                  <a href="https://maps.app.goo.gl/GkA6vfmG2DeB5ZT5A" target="_blank" rel="noopener noreferrer" className="font-semibold text-white hover:text-slate-300 transition-colors">
+                    Distrito Avellaneda
+                  </a>
+                </p>
+                <p>
+                  Av. Avellaneda 1140, B7000<br />
+                  Tandil, Buenos Aires, Argentina
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

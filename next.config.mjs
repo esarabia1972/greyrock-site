@@ -1,15 +1,11 @@
-import createMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
-
-const withMDX = createMDX({
-  extension: /\.mdx?$/,
-  options: { remarkPlugins: [remarkGfm] }
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['ts', 'tsx', 'mdx'],
-  experimental: { mdxRs: true }
-}
+  // Solo usamos páginas TS/TSX
+  pageExtensions: ['ts', 'tsx'],
+  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
+};
 
-export default withMDX(nextConfig)
+export default nextConfig;

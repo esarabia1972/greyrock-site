@@ -1,17 +1,13 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import "@/styles/globals.css"; // <- ESTE IMPORT ACTIVA TUS ESTILOS
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: {
-    default: "GreyRock Venture Studio",
-    template: "%s — GreyRock",
-  },
+  title: { default: "GreyRock Venture Studio", template: "%s — GreyRock" },
   description:
     "Venture studio en Tandil. Seleccionamos, co-creamos y escalamos startups B2B con validación en territorio.",
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",
@@ -30,10 +26,7 @@ export const metadata: Metadata = {
     images: ["/img/og.jpg"],
   },
   robots: { index: true, follow: true },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

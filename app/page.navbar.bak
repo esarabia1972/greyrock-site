@@ -331,7 +331,7 @@ ${message}`;
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-8">
             <div className="bg-red-900 text-red-100 px-6 py-3 rounded-lg flex items-center gap-2">
               <Clock className="h-5 w-5" />
-              <span className="font-semibold">Inscripción cierra: 30 de Septiembre 2025</span>
+              <span className="font-semibold">Inscripción cierra: 30 de Noviembre 2025</span>
             </div>
             <div className="bg-orange-900 text-orange-100 px-6 py-3 rounded-lg">
               <span className="font-semibold">Solo quedan 8 lugares disponibles</span>

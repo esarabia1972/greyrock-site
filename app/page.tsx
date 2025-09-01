@@ -1,11 +1,17 @@
-'use client'
+"use client";
+
+import { useState } from "react";
+import { Modal } from "@/components/Modal";
+
+
+
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
 import { 
   Lightbulb, 
   Users, 
@@ -24,6 +30,7 @@ import {
 } from "lucide-react";
 
 export default function Index() {
+  const [applyOpen, setApplyOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -98,7 +105,7 @@ ${message}`;
               Postulá tu idea
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-slate-300" onClick={() => window.open('https://cupcakeipsum.com', '_blank')}>
+            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-slate-300" onClick={() => setApplyOpen(true)}>
               Sumate al ecosistema
               <ExternalLink className="ml-2 h-5 w-5" />
             </Button>
@@ -363,7 +370,7 @@ ${message}`;
                 </div>
               </div>
               <Separator />
-              <Button size="lg" className="w-full bg-slate-800 hover:bg-slate-700" onClick={() => window.open('https://cupcakeipsum.com', '_blank')}>
+              <Button size="lg" className="w-full bg-slate-800 hover:bg-slate-700"  onClick={() => { console.log("CTA click"); setApplyOpen(true); }}>
                 Aplicar Ahora
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
